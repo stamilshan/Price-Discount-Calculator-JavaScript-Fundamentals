@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Price & Discount Calculator — JavaScript Fundamentals</h1>
+
+<script>
+        
+//variable intialization
+let name="iphone 18";
+var basePrice= 132700;
+var discountPercent=30;
+const taxRate=18;
+var stockStatus="limited"
+
+
+//Calculate Dicount Price
+function calculateDicountPrice(price, discount){
+return price-((price * discount)/100);   
+}
+
+//Calculate Tax
+ function calculateTax(price, taxRate){
+ return (price * taxRate)/100;
+ }
+
+ //calculate Final Price
+function calculateFinalPrice(price, discount, taxRate){
+
+   const discounted = calculateDicountPrice (price, discount);
+   const taxAmount = calculateTax (price, taxRate);
+   return Math.round(discounted + taxAmount);
+ }
+
+//Shipping Status
+ function isFreeShipping(finalPrice){
+    return finalPrice >= 5000 ? "Free shipping" : "shipping: Rs. 4999";
+ }
+
+ //Get Stock Message
+ function getStockMessage(status){
+
+    if(status=="in stock"){
+        return 'in stock';
+    }else if(status=="limited"){
+        return 'limited';
+    }else if(status=="out of stock"){
+        return 'out of stock';
+    } else
+      return 'unknown status';
+ }
+//function call
+console.log("--Price Summary--");
+console.log("Product Name:" + name);
+console.log("Product Price: RS." + basePrice);
+
+productDiscountPrice=calculateDicountPrice (basePrice, discountPercent);
+console.log("Discount Price: Rs." + productDiscountPrice)
+
+productTax=calculateTax(basePrice, taxRate)
+console.log("Tax Amount: Rs." + productTax);
+
+productFinalPrice=calculateFinalPrice(basePrice, discountPercent, taxRate);
+console.log("Final Price: Rs." + productFinalPrice);
+
+shippingStatus=isFreeShipping(productFinalPrice);
+console.log("Shipping:"+ shippingStatus);
+
+productStatus=getStockMessage(stockStatus);
+console.log("Stock status:" + productStatus);
+
+
+</script>
+</body>
+</html>
